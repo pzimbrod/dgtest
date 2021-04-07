@@ -23,7 +23,7 @@
 [Variables]
   [./u]
     order = FIRST
-    family = L2_LAGRANGE
+    family = LAGRANGE
   [../]
 []
 
@@ -34,7 +34,7 @@
   [../]
 
   [./adv_u]
-    implicit = false
+    implicit = true
     type = ConservativeAdvection
     variable = u
     velocity = '1 0 0'
@@ -48,7 +48,7 @@
 
 [DGKernels]
   [./dg_advection_u]
-    implicit = false
+    implicit = true
     type = DGConvection
     variable = u
     velocity = '1 0 0'
@@ -59,7 +59,7 @@
     variable = u
     epsilon = 1
     sigma = 1
-    diff = 0.02
+    diff = 0.002
   [../]
 []
 
@@ -73,14 +73,19 @@
 
 [Executioner]
   type = Transient
-  [./TimeIntegrator]
-    type = ExplicitMidpoint
+  [./TimeStepper]
+    type = SolutionTimeAdaptiveDT
+    dt = 1e-3
   [../]
   solve_type = 'PJFNK'
   petsc_options_iname = '-pc_type -pc_hypre_type' # PETSc option pairs with values below
   petsc_options_value = ' hypre   boomeramg'
   num_steps = 200
-  dt = 1e-3
+  automatic_scaling = true
+  start_time = 0.0
+  dtmin = 1e-4
+  dtmax = 0.01
+  end_time = 0.2
 []
 
 [Outputs]
