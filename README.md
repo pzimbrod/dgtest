@@ -1,4 +1,4 @@
-Reference Code in Discontinuous Galerkin Code for Benchmarks
+Reference Code in Discontinuous Galerkin Formulation for Benchmark Purposes
 =====
 
 This repository serves as a MOOSE-based application that implements the Discontinuous Galerkin (DG) method.
