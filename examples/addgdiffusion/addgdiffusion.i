@@ -57,4 +57,5 @@
 [DGKernels]
   [./dg_diff]
     type = ADDGDiffusion
- 
+  []
+[]
