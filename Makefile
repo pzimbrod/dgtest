@@ -4,11 +4,10 @@
 #
 # Optional Environment variables
 # MOOSE_DIR        - Root directory of the MOOSE project
-MOOSE_DIR           = ~/projects/moose
 #
 ###############################################################################
 # Use the MOOSE submodule if it exists and MOOSE_DIR is not set
-MOOSE_SUBMODULE    := ~/projects/moose
+MOOSE_SUBMODULE    := $(CURDIR)/moose
 ifneq ($(wildcard $(MOOSE_SUBMODULE)/framework/Makefile),)
   MOOSE_DIR        ?= $(MOOSE_SUBMODULE)
 else
@@ -25,24 +24,28 @@ include $(FRAMEWORK_DIR)/moose.mk
 # yes as needed.  Or set ALL_MODULES to yes to turn on everything (overrides
 # other set variables).
 
-ALL_MODULES                 := yes
+ALL_MODULES                 := no
 
 CHEMICAL_REACTIONS          := no
 CONTACT                     := no
 EXTERNAL_PETSC_SOLVER       := no
 FLUID_PROPERTIES            := yes
+FSI                         := no
 FUNCTIONAL_EXPANSION_TOOLS  := no
 GEOCHEMISTRY                := no
-HEAT_CONDUCTION             := yes
-LEVEL_SET                   := yes
+HEAT_CONDUCTION             := no
+LEVEL_SET                   := no
 MISC                        := no
-NAVIER_STOKES               := yes
-PHASE_FIELD                 := yes
+NAVIER_STOKES               := no
+PERIDYNAMICS                := no
+PHASE_FIELD                 := no
 POROUS_FLOW                 := no
-RAY_TRACING                 := yes
-RDG                         := yes
+RAY_TRACING                 := no
+REACTOR                     := no
+RDG                         := yes	
 RICHARDS                    := no
 STOCHASTIC_TOOLS            := yes
+THERMAL_HYDRAULICS          := no
 TENSOR_MECHANICS            := no
 XFEM                        := no
 
